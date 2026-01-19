@@ -54,7 +54,7 @@
         .hero span { color: var(--primary); }
         .hero p { color: var(--text-gray); font-size: 1.1rem; max-width: 600px; margin: 0 auto 30px; }
 
-        /* SECCIÓN DE DESCARGAS */
+        /* ZONA DE DESCARGAS */
         .download-section {
             background: #111;
             padding: 40px 20px;
@@ -166,8 +166,6 @@
         /* Lógica Moneda y Botones */
         .show-usd { display: block; }
         .show-eur { display: none; }
-        
-        /* Cuando se activa el switch (clase .euro-mode en el grid) */
         .euro-mode .show-usd { display: none; }
         .euro-mode .show-eur { display: block; }
 
@@ -202,12 +200,13 @@
             padding-top: 20px;
         }
         .b-price-item strong { display: block; font-size: 1.8rem; color: var(--binance-gold); }
+        .copy-btn { background: #333; color: white; border: none; padding: 5px 10px; border-radius: 5px; cursor: pointer; margin-left: 10px; }
 
         /* FAQ */
         .faq-section { max-width: 800px; margin: 60px auto; padding: 0 20px; }
-        .faq-item { background: var(--card-bg); margin-bottom: 15px; border-radius: 10px; }
+        .faq-item { background: var(--card-bg); margin-bottom: 15px; border-radius: 10px; overflow: hidden; }
         .faq-question { padding: 20px; cursor: pointer; display: flex; justify-content: space-between; align-items: center; font-weight: 600; }
-        .faq-answer { padding: 0 20px 20px; color: var(--text-gray); display: none; font-size: 0.95rem; }
+        .faq-answer { padding: 0 20px 20px; color: var(--text-gray); display: none; font-size: 0.95rem; line-height: 1.6; }
         .faq-item.active .faq-answer { display: block; }
         .faq-item.active .faq-question i { transform: rotate(180deg); }
 
@@ -247,21 +246,21 @@
     </section>
 
     <section class="download-section">
-        <h3 style="margin-top:0;">📥 Zona de Descargas</h3>
+        <h3 style="margin-top:0; color:white;">📥 Zona de Descargas</h3>
         <p style="color:#aaa; font-size:0.9rem;">Instala nuestra App oficial en segundos</p>
         
         <div class="download-grid">
             <div class="dl-card">
                 <i class="fas fa-fire"></i>
-                <h3>Firestick / TV Box</h3>
-                <p style="font-size:0.8rem; color:#888;">Usando App Downloader</p>
+                <h3 style="margin:10px 0; color:white;">Firestick / TV Box</h3>
+                <p style="font-size:0.8rem; color:#888;">Código Downloader:</p>
                 <span class="dl-code">7726689</span>
-                <a href="https://descargar.ink/down.oficial" class="btn-dl">Enlace Directo</a>
+                <a href="https://descargar.ink/down.oficial" class="btn-dl">Link Directo</a>
             </div>
             
             <div class="dl-card">
                 <i class="fab fa-android"></i>
-                <h3>Celular Android</h3>
+                <h3 style="margin:10px 0; color:white;">Celular Android</h3>
                 <p style="font-size:0.8rem; color:#888;">Instalación APK directa</p>
                 <a href="https://descargar.ink/down.appm" class="btn-dl" style="margin-top:15px;">Descargar APK</a>
             </div>
@@ -303,7 +302,7 @@
             </div>
 
             <div class="price-card" style="border: 2px solid var(--primary); transform: scale(1.02);">
-                <div style="position: absolute; top: -12px; right: 20px; background: #e53e3e; padding: 5px 10px; border-radius: 5px; font-size: 0.8rem; font-weight:bold;">OFERTA</div>
+                <div style="position: absolute; top: -12px; right: 20px; background: #e53e3e; padding: 5px 10px; border-radius: 5px; font-size: 0.8rem; font-weight:bold; color:white;">OFERTA</div>
                 <h3>Anual</h3>
                 <p style="color:var(--text-gray)">14 Meses de Servicio</p>
                 
@@ -334,7 +333,7 @@
             <div class="b-price-item"><strong>$40.00</strong><span>14 Meses</span></div>
         </div>
         <div style="background:#333; padding:10px; margin-top:15px; border-radius:5px; font-family:monospace; color:white;">
-            ID Pay: 1198368803 <br>
+            ID Pay: 1198368803 <button class="copy-btn" onclick="copiar('1198368803')">Copiar</button> <br>
             <span style="font-size:0.8rem; color:#aaa;">(OleadaTV_Oficial)</span>
         </div>
         <div style="text-align:center; margin-top:15px;">
@@ -364,6 +363,16 @@
                 Si usas Firestick o TV Box, descarga la app "Downloader" desde la tienda y usa nuestro código <strong>7726689</strong>. Si usas celular Android, descarga el APK desde la sección de descargas de esta web.
             </div>
         </div>
+
+        <div class="faq-item">
+            <div class="faq-question" onclick="toggleFaq(this)">
+                ¿Puedo probar antes de comprar?
+                <i class="fas fa-chevron-down"></i>
+            </div>
+            <div class="faq-answer">
+                Sí, ofrecemos demos de corta duración para que verifiques la calidad. Contáctanos al WhatsApp para solicitarlo.
+            </div>
+        </div>
     </section>
 
     <div class="support-box">
@@ -384,14 +393,19 @@
 
         toggle.addEventListener('change', function() {
             if(this.checked) {
-                grid.classList.add('euro-mode'); // Activa Euros
+                grid.classList.add('euro-mode');
             } else {
-                grid.classList.remove('euro-mode'); // Activa Dólares
+                grid.classList.remove('euro-mode');
             }
         });
 
         function toggleFaq(element) {
             element.parentElement.classList.toggle('active');
+        }
+
+        function copiar(texto) {
+            navigator.clipboard.writeText(texto);
+            alert('ID Copiado');
         }
     </script>
 </body>
